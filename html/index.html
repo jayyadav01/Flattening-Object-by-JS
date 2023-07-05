@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flattening Object</title>
+</head>
+<body>
+    <script>
+        let user = {
+            "name":"Karan",
+            "address":
+            {
+                "personal":"Delhi",
+                "area":"CivilLines"
+            },
+            "office":
+            {
+                "state":"Mumbai",
+                "area":
+                {
+                    "landmark":"Bandra"
+                }
+            }
+        }
+
+        let keyword = 'user';
+        let blankobj = {};
+
+        function flatten(object,word)
+        {
+            for(let key in object)
+            {
+                if(typeof object[key] === 'object')
+                {
+                    flatten(object[key],word + '_' + key)
+                }
+                else
+                {
+                    blankobj[word + '_' + key] = object[key]
+                }
+            }
+            return blankobj;
+        }
+
+        console.log(flatten(user,keyword))
+    </script>
+</body>
+</html>
